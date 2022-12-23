@@ -7,7 +7,7 @@ public class StudentView {
 
     public void StudentConsole(){
         StudentService studentfunc = new StudentService();
-        StudentModel student = new StudentModel();
+        CourseModel student = new CourseModel();
         Scanner input = new Scanner(System.in);
 
         String proceed = "yes";
@@ -39,8 +39,9 @@ public class StudentView {
                 student.setLastName(input.next());
                 System.out.println(">> Please enter the Student's age");
                 student.setAge(input.nextInt());
-                System.out.println(">> Please enter the Student's Course");
-                student.setCourse(input.next());
+                System.out.println(">> Please enter the Student's Course Name");
+                student.setCourseName(input.next());
+                student.setCourseId(student.getCourseName().substring(0,2).toUpperCase() + Math.round(Math.random()));
                 System.out.println();
                 System.out.println(studentfunc.addStudent(student.getRegNo(), student));
             }
@@ -64,8 +65,10 @@ public class StudentView {
                 student.setLastName(input.next());
                 System.out.println(">> Please enter the Student's age");
                 student.setAge(input.nextInt());
-                System.out.println(">> Please enter the Student's Course");
-                student.setCourse(input.next());
+                System.out.println(">> Please enter the Student's Course Id");
+                student.setCourseId(input.next());
+                System.out.println(">> Please enter the Student's Course Name");
+                student.setCourseName(input.next());
                 System.out.println();
                 System.out.println(studentfunc.editStudent(id, student));
             }

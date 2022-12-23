@@ -5,16 +5,14 @@ public class StudentModel {
     private String firstName;
     private  String lastName;
     private int age;
-    private String course;
 
     public StudentModel(){}
 
-    public StudentModel(String regNo, String firstName, String lastName, int age, String course) {
+    public StudentModel(String regNo, String firstName, String lastName, int age) {
         this.regNo = regNo;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
-        this.course = course;
     }
 
     public String getRegNo() {
@@ -49,20 +47,11 @@ public class StudentModel {
         this.age = age;
     }
 
-    public String getCourse() {
-        return course;
-    }
 
-    public void setCourse(String course) {
-        this.course = course;
-    }
-
-    @Override
-    public String toString() {
+    public String output() {
         return
                 "\n\nJamb Reg No.: " + regNo +
                 "\nFull Name: " + firstName + " " + lastName +
-                "\nAge: " + age +
-                "\nCourse: " + course;
+                "\nAge: " + age;
     }
 }

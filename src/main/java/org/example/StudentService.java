@@ -6,9 +6,9 @@ import java.util.stream.Stream;
 
 public class StudentService implements StudentInterface {
 
-    public List<StudentModel> students= new ArrayList<>();
+    public List<CourseModel> students= new ArrayList<>();
     @Override
-    public String addStudent(String id, StudentModel student) {
+    public String addStudent(String id, CourseModel student) {
 
         for(StudentModel stud : students){
             if(stud.getRegNo().equals(id)){
@@ -16,31 +16,31 @@ public class StudentService implements StudentInterface {
             }
         }
 
-        StudentModel studentDetails = new StudentModel(student.getRegNo(), student.getFirstName(), student.getLastName(), student.getAge(), student.getCourse());
+        CourseModel studentDetails = new CourseModel(student.getRegNo(), student.getFirstName(), student.getLastName(), student.getAge(), student.getCourseId(), student.getCourseName());
         students.add(studentDetails);
         return "Student details saved successfully";
 
     }
 
     @Override
-    public List<StudentModel> viewAllStudents(StudentModel student) {
+    public List<CourseModel> viewAllStudents(CourseModel student) {
         return  students;
     }
 
     @Override
-    public List<StudentModel> viewStudentById(String id, StudentModel student) {
-        Stream<StudentModel> studentModelStream = students.stream().filter(stud -> stud.getRegNo().equals(id));
+    public List<CourseModel> viewStudentById(String id, CourseModel student) {
+        Stream<CourseModel> studentModelStream = students.stream().filter(stud -> stud.getRegNo().equals(id));
         return studentModelStream.toList();
     }
 
     @Override
-    public String editStudent(String id, StudentModel student) {
-        for(StudentModel stud : students){
+    public String editStudent(String id, CourseModel student) {
+        for(CourseModel stud : students){
             if(stud.getRegNo().equals(id)){
                 stud.setFirstName(stud.getFirstName());
                 stud.setLastName(stud.getLastName());
                 stud.setAge(stud.getAge());
-                stud.setCourse(stud.getCourse());
+                stud.setCourseName(stud.getCourseName());
                 return "Student Details edited successfully";
             }
         }
@@ -50,14 +50,14 @@ public class StudentService implements StudentInterface {
     }
 
     @Override
-    public List<StudentModel> viewStudentByCourse(String course, StudentModel student) {
-        Stream<StudentModel> studentModelStream = students.stream().filter(stud -> stud.getCourse().equals(course));
+    public List<CourseModel> viewStudentByCourse(String course, CourseModel student) {
+        Stream<CourseModel> studentModelStream = students.stream().filter(stud -> stud.getCourseName().equals(course));
         return studentModelStream.toList();
     }
 
     @Override
-    public List<StudentModel> viewStudentOfGivenMinimumAge(int age, StudentModel student) {
-        Stream<StudentModel> studentModelStream = students.stream().filter(stud -> stud.getAge() >= age);
+    public List<CourseModel> viewStudentOfGivenMinimumAge(int age, CourseModel student) {
+        Stream<CourseModel> studentModelStream = students.stream().filter(stud -> stud.getAge() >= age);
         return studentModelStream.toList();
     }
 }
